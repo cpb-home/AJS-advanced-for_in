@@ -1,6 +1,35 @@
-// TODO: write your code here
-import sum from './basic';
+export const obj = {
+  name: 'мечник',
+  health: 10,
+  level: 2,
+  attack: 80,
+  defence: 40
+};
 
-console.log('worked');
+export const sorting = ["name", "level"];
 
-console.log(sum([1, 2]));
+export default function orderByProps(targetObject, sortingTerms) {
+  let targetArr = [];
+  for (let prop in targetObject) {
+    if (!sorting.includes(prop)){
+      targetArr.push({key: prop, value: targetObject[prop]});
+    }
+  }
+
+  let resultArr = [];
+  sortingTerms.forEach(el => {
+    if (el in targetObject) {
+      resultArr.push({key: el, value: targetObject[el]});
+    }
+  });
+
+  targetArr.sort((a, b) => {
+    if (a.key < b.key) {
+      return -1;
+    }
+  });
+  resultArr.push(...targetArr);
+  return resultArr;
+}
+
+console.log(orderByProps(obj, sorting));
