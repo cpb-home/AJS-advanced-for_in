@@ -6,12 +6,12 @@ export const obj = {
   defence: 40
 };
 
-export const sorting = ["name", "level"];
+const sorting = ["name", "level"];
 
 export default function orderByProps(targetObject, sortingTerms) {
   let targetArr = [];
   for (let prop in targetObject) {
-    if (!sorting.includes(prop)){
+    if (!sortingTerms.includes(prop)){
       targetArr.push({key: prop, value: targetObject[prop]});
     }
   }
